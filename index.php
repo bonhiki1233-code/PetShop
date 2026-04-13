@@ -1,3 +1,4 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/PetShop/includes/header.php'; ?>
 <?php
 // 1. Kết nối database
 $conn = mysqli_connect("localhost", "root", "", "petshop_db");

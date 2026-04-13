@@ -1,5 +1,6 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/PetShop/includes/header.php'; ?>
 <?php
-include '../db.php';
+include '../config/db.php';
 if(isset($_POST['login'])){
     $u = $_POST['username'];
     $p = $_POST['password'];

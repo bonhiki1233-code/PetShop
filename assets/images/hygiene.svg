@@ -1,0 +1,10 @@
+<svg width="640" height="480" viewBox="0 0 640 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="480" rx="40" fill="#DDF3F7"/>
+  <circle cx="142" cy="104" r="68" fill="#83D0DE"/>
+  <rect x="188" y="140" width="264" height="236" rx="36" fill="#FFFDF8"/>
+  <path d="M232 188C232 158.177 256.177 134 286 134H354C383.823 134 408 158.177 408 188V208H232V188Z" fill="#83D0DE"/>
+  <path d="M228 234H412V328C412 348.987 394.987 366 374 366H266C245.013 366 228 348.987 228 328V234Z" fill="#2F7D5B"/>
+  <circle cx="320" cy="292" r="42" fill="#FFFDF8"/>
+  <path d="M320 252C334 275 348 290 348 306C348 321.464 335.464 334 320 334C304.536 334 292 321.464 292 306C292 290 306 275 320 252Z" fill="#83D0DE"/>
+  <text x="320" y="414" text-anchor="middle" fill="#21302A" font-family="Arial, sans-serif" font-size="30" font-weight="700">HYGIENE</text>
+</svg>

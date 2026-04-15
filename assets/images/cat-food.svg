@@ -1,0 +1,14 @@
+<svg width="640" height="480" viewBox="0 0 640 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="480" rx="40" fill="#FDEBDB"/>
+  <circle cx="138" cy="106" r="70" fill="#F59E7A"/>
+  <rect x="168" y="164" width="304" height="198" rx="44" fill="#1F5D43"/>
+  <path d="M223 164L264 102L304 164H223Z" fill="#1F5D43"/>
+  <path d="M336 164L376 102L417 164H336Z" fill="#1F5D43"/>
+  <circle cx="255" cy="250" r="18" fill="#FFF6EF"/>
+  <circle cx="385" cy="250" r="18" fill="#FFF6EF"/>
+  <circle cx="255" cy="250" r="8" fill="#21302A"/>
+  <circle cx="385" cy="250" r="8" fill="#21302A"/>
+  <path d="M320 268L338 296H302L320 268Z" fill="#F59E7A"/>
+  <path d="M270 318C292 338 348 338 370 318" stroke="#FFF6EF" stroke-width="10" stroke-linecap="round"/>
+  <text x="320" y="406" text-anchor="middle" fill="#21302A" font-family="Arial, sans-serif" font-size="30" font-weight="700">CAT FOOD</text>
+</svg>

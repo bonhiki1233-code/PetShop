@@ -1,0 +1,11 @@
+<svg width="640" height="480" viewBox="0 0 640 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="480" rx="40" fill="#F7E9C7"/>
+  <circle cx="504" cy="114" r="66" fill="#F0B45A"/>
+  <path d="M128 354C128 279.442 188.442 219 263 219H377C451.558 219 512 279.442 512 354V372C512 386.359 500.359 398 486 398H154C139.641 398 128 386.359 128 372V354Z" fill="#2F7D5B"/>
+  <rect x="212" y="158" width="212" height="102" rx="28" fill="#FFF7E8"/>
+  <path d="M252 147C252 122.699 271.699 103 296 103H340C364.301 103 384 122.699 384 147V162H252V147Z" fill="#9C6B2F"/>
+  <circle cx="276" cy="300" r="46" fill="#FFF7E8"/>
+  <circle cx="364" cy="300" r="46" fill="#FFF7E8"/>
+  <path d="M320 271L336 300L320 329L304 300L320 271Z" fill="#F0B45A"/>
+  <text x="320" y="191" text-anchor="middle" fill="#21302A" font-family="Arial, sans-serif" font-size="30" font-weight="700">DOG FOOD</text>
+</svg>

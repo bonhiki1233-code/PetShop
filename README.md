@@ -15,13 +15,19 @@ Dự án này là một ứng dụng web quản lý cửa hàng thú cưng, đư
 
 /PetShop
 /assets/css/styles.css   # File định dạng giao diện chính (Custom CSS)
-/auth                    # Xử lý Login, Register, Logout
-/classes                 # Các lớp đối tượng OOP (Database.php, User.php)
-/includes                # Thành phần dùng chung (Header, Footer, Helpers)
- /config/db.php            # Cấu hình kết nối MySQL (mysqli & PDO)
- /index.php                # Trang chủ ứng dụng
- /products.php             # Danh mục sản phẩm
 
+/auth                    # Xử lý Login, Register, Logout
+
+/classes                 # Các lớp đối tượng OOP (Database.php, User.php)
+
+/includes                # Thành phần dùng chung (Header, Footer, Helpers)
+
+ /config/db.php            # Cấu hình kết nối MySQL (mysqli & PDO)
+ 
+ /index.php                # Trang chủ ứng dụng
+ 
+ /products.php             # Danh mục sản phẩm
+ 
   👥 Phân công nhiệm vụ (Project Members)
   Dự án được thực hiện với sự phối hợp chặt chẽ giữa các thành viên:
   Member 1: Database + Auth

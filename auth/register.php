@@ -4,7 +4,8 @@ require_once '../classes/User.php';
 
 $db = (new Database())->getConnection();
 $userObj = new User($db);
-$error = "";
+$message = '';
+$messageClass = 'message';
 
 if (isset($_POST['register'])) {
     $u = $_POST['username'];
@@ -12,39 +13,74 @@ if (isset($_POST['register'])) {
     $p = $_POST['password'];
 
     if ($userObj->register($u, $e, $p)) {
-        header("Location: login.php?success=1");
+        header('Location: login.php?success=1');
         exit();
-    } else {
-        $error = "Đăng ký thất bại! Username hoặc Email có thể đã tồn tại.";
     }
+
+    $message = 'Dang ky that bai! Username hoac Email co the da ton tai.';
+    $messageClass = 'message message-error';
 }
-
-include '../includes/header.php';
 ?>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop | Dang ky</title>
+    <link rel="stylesheet" href="/PetShop/assets/styles.css">
+</head>
+<body>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/PetShop/includes/header.php'; ?>
 
-<main class="auth-wrapper">
-    <div class="auth-card">
-        <span class="eyebrow">Đăng ký</span>
-        <h1>Tạo tài khoản</h1>
-        <p>Tham gia cộng đồng yêu thú cưng ngay hôm nay.</p>
-
-        <?php if($error): ?>
-            <div class="message" style="background: #fee2e2; color: #dc2626; border: 1px solid #fecaca;">
-                <?=  $error ?>
+<main class="container page-section">
+    <section class="auth-layout">
+        <article class="auth-card auth-card-accent">
+            <span class="eyebrow">Bat dau cung PetShop</span>
+            <h1>Tao tai khoan moi trong mot buoc.</h1>
+            <p>Dang ky de luu thong tin co ban va giu giao dien mua sam cua ban lien mach giua cac trang.</p>
+            <div class="auth-feature-list">
+                <div class="panel">
+                    <strong>Don gian</strong>
+                    <span>Chi can username, email va mat khau de bat dau.</span>
+                </div>
+                <div class="panel">
+                    <strong>Thong nhat</strong>
+                    <span>Form dang ky da dong bo cung mot bo giao dien voi toan bo website.</span>
+                </div>
             </div>
-        <?php endif; ?>
-        
-        <form method="POST">
-            <input type="text" name="username" placeholder="Tên đăng nhập" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Mật khẩu" required>
-            <button type="submit" name="register" class="btn btn-primary">Đăng ký tài khoản</button>
-        </form>
+        </article>
 
-        <div style="margin-top: 24px; text-align: center;">
-            <p>Đã có tài khoản? <a href="login.php" style="color: var(--brand); font-weight: 700;">Đăng nhập</a></p>
-        </div>
-    </div>
+        <article class="auth-card">
+            <div class="form-heading">
+                <h2>Tao tai khoan</h2>
+                <p>Dien thong tin ben duoi de tao tai khoan khach hang moi.</p>
+            </div>
+
+            <?php if ($message !== '') : ?>
+                <div class="<?php echo htmlspecialchars($messageClass); ?>"><?php echo htmlspecialchars($message); ?></div>
+            <?php endif; ?>
+
+            <form method="POST" class="stack-form">
+                <label class="field-group">
+                    <span class="field-label">Username</span>
+                    <input class="field-input" type="text" name="username" placeholder="Nhap username" required>
+                </label>
+                <label class="field-group">
+                    <span class="field-label">Email</span>
+                    <input class="field-input" type="email" name="email" placeholder="Nhap email" required>
+                </label>
+                <label class="field-group">
+                    <span class="field-label">Password</span>
+                    <input class="field-input" type="password" name="password" placeholder="Tao mat khau" required>
+                </label>
+                <button class="btn btn-primary btn-block" name="register">Dang ky</button>
+            </form>
+
+            <p class="auth-note">Da co tai khoan? <a href="/PetShop/auth/login.php"><strong>Dang nhap</strong></a></p>
+        </article>
+    </section>
 </main>
 
-<?php include '../includes/footer.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/PetShop/includes/footer.php'; ?>
+</body>
+</html>

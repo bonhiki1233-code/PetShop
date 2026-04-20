@@ -27,9 +27,9 @@ if ($result) {
     <div class="page-header">
         <div class="container page-header-inner">
             <div>
-                <span class="eyebrow">Danh muc san pham</span>
-                <h1>Tat ca san pham cho thu cung</h1>
-                <p>Kham pha day du thuc an, phu kien va san pham cham soc danh cho nguoi ban nho cua ban.</p>
+                <span class="eyebrow">Danh mục sản phẩm</span>
+                <h1>Tất cả sản phẩm cho thú cưng</h1>
+                <p>Khám phá thú cưng và các vật phẩm dành cho pet của bạn</p>
             </div>
             <a class="btn btn-primary" href="/PetShop/auth/login.php">Dang nhap de mua hang</a>
         </div>
@@ -37,7 +37,7 @@ if ($result) {
 
     <?php if (!empty($products)) : ?>
         <div class="count-strip container">
-            Tim thay <strong><?php echo count($products); ?> san pham</strong>
+            Tim thay <strong><?php echo count($products); ?> sản phẩm</strong>
         </div>
 
         <section class="product-section container">
@@ -46,7 +46,7 @@ if ($result) {
                     <?php
                     $productName = $product['product_name'] ?? 'San pham dang cap nhat';
                     $productPrice = isset($product['price_new']) ? number_format((float) $product['price_new']) . ' VND' : 'Lien he';
-                    $productDescription = $product['description'] ?? 'Thong tin chi tiet cua san pham se duoc cap nhat them.';
+                    $productDescription = $product['description'] ?? 'Thông tin sẽ được cập nhật thêm.';
                     $category = $product['category'] ?? 'Pet care';
                     $productImage = petshop_product_image($product);
                     $productAlt = petshop_product_alt($product);
@@ -73,8 +73,7 @@ if ($result) {
         <section class="product-section container">
             <div class="empty-state">
                 <div class="empty-icon">Pet</div>
-                <h3>Chua tim thay san pham nao</h3>
-                <p>Database da ket noi, nhung bang Products chua co du lieu de hien thi.</p>
+                <h3>Chưa tìm thấy sản phẩm nào</h3>
             </div>
         </section>
     <?php endif; ?>

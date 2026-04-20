@@ -35,25 +35,23 @@ if (isset($_POST['register'])) {
 <main class="container page-section">
     <section class="auth-layout">
         <article class="auth-card auth-card-accent">
-            <span class="eyebrow">Bat dau cung PetShop</span>
-            <h1>Tao tai khoan moi trong mot buoc.</h1>
-            <p>Dang ky de luu thong tin co ban va giu giao dien mua sam cua ban lien mach giua cac trang.</p>
+            <span class="eyebrow">Bắt đầu cũng Petshop</span>
+            <h1>Tạo tài khoản mới</h1>
             <div class="auth-feature-list">
                 <div class="panel">
-                    <strong>Don gian</strong>
-                    <span>Chi can username, email va mat khau de bat dau.</span>
+                    <strong>Giá</strong>
+                    <span>Chỉ cần mail và mật khẩu để bắt đầu</span>
                 </div>
                 <div class="panel">
-                    <strong>Thong nhat</strong>
-                    <span>Form dang ky da dong bo cung mot bo giao dien voi toan bo website.</span>
+                    <strong>Thống nhất</strong>
                 </div>
             </div>
         </article>
 
         <article class="auth-card">
             <div class="form-heading">
-                <h2>Tao tai khoan</h2>
-                <p>Dien thong tin ben duoi de tao tai khoan khach hang moi.</p>
+                <h2>Tạo tài khoản</h2>
+                <p>Điền đầy đủ thông tin</p>
             </div>
 
             <?php if ($message !== '') : ?>
@@ -76,7 +74,11 @@ if (isset($_POST['register'])) {
                 <button class="btn btn-primary btn-block" name="register">Dang ky</button>
             </form>
 
+<<<<<<< HEAD
             <p class="auth-note">Da co tai khoan? <a href="/PetShop/auth/login.php"><strong>Dang nhap</strong></a></p>
+=======
+            <p class="auth-note">Tải lại trang login</p>
+>>>>>>> 29d89b0 (giao dien lan 1)
         </article>
     </section>
 </main>

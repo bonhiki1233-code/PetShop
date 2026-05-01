@@ -10,6 +10,10 @@ if (session_status() == PHP_SESSION_NONE) { session_start(); }
             <a href="/PetShop/index.php">Trang chủ</a>
             <a href="/PetShop/products.php">Sản phẩm</a>
             
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'ADMIN'): ?>
+                    <a href="/PetShop/admin/admin_products.php">Quản trị</a>
+                <?php endif; ?>
+            
             <?php if(isset($_SESSION['user_id'])): ?>
                 <span style="color: var(--brand); font-weight: bold;">Chào, <?= htmlspecialchars($_SESSION['username']) ?></span>
                 <a href="/PetShop/auth/logout.php">Đăng xuất</a>

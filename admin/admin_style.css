@@ -1,96 +1,144 @@
+
 :root {
-    --primary: #2c3e50;
-    --accent: #3498db;
-    --success: #27ae60;
-    --danger: #e74c3c;
-    --bg: #f8f9fa;
-}
-body { 
-    font-family: 'Arial', 
-    sans-serif; 
-    background: 
-    var(--bg); 
-    padding: 20px; 
-}
-.container { 
-    max-width: 1000px; 
-    margin: auto; 
-    background: white; 
-    padding: 20px; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-}
-table { 
-    width: 100%; 
-    border-collapse: collapse; 
-    margin-top: 20px; 
-}
-th, td { 
-    padding: 12px; 
-    text-align: left; 
-    border-bottom: 1px solid #eee; 
-}
-th { 
-    background: var(--primary); 
-    color: white; 
-}
-.btn { 
-    padding: 8px 12px; 
-    border-radius: 4px; 
-    text-decoration: none; 
-    color: white; 
-    cursor: pointer; 
-    border: none; 
-}
-.btn-success-add { 
-   background-color: #27ae60 !important; 
-   color: white !important;
-   display: block;
-   width: 100%; 
-   margin-top: 10px;
-   padding: 10px;
-   font-size: 1.1rem;
-}
-.btn-success-edit { 
-   background-color: #2980b9 !important; 
-   color: white !important;
-   display: inline-block;
-   margin-top: 10px;
-}
-.btn-delete { 
-   background-color: #e74c3c !important; 
-   color: white !important;
-}
-form input, form select { 
-    padding: 10px; 
-    margin: 10px 0; 
-    width: 100%; 
-    border: 1px solid #ddd; 
-    border-radius: 4px; 
+    --primary-green: #246d4d; 
+    --light-bg: #f5f2e9;    
+    --white: #ffffff;
+    --dark-text: #231f20;
+    --border-color: #d1cfc7;
+    --btn-hover: #1b533a;
 }
 
+body { 
+    font-family: 'Arial', sans-serif; 
+    background-color: var(--light-bg); 
+    color: var(--dark-text);
+    padding: 20px; 
+    margin: 0;
+}
+
+.container { 
+    max-width: 1100px; 
+    margin: auto; 
+    background: var(--white); 
+    padding: 30px; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+}
 
 .navbar {
    display: flex;             
-   justify-content: center;   
-   gap: 15px;                 
-   margin-bottom: 20px;
-   padding: 10px;
+   justify-content: flex-start;   
+   gap: 10px;                 
+   margin-bottom: 30px;
+   padding: 15px 0;
+   border-bottom: 1px solid var(--border-color);
 }
 
-.navbar .btn {
-   display: inline-block;    
-   width: auto;               
-   padding: 10px 20px;
-   min-width: 150px;         
-   text-align: center;
+.btn { 
+    padding: 10px 22px; 
+    border-radius: 25px; 
+    text-decoration: none; 
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
 }
 
-.btn-edit, .btn-add {
-   background-color: #2980b9 !important; 
+.btn-primary-admin, .btn-add, .btn-success-add { 
+   background-color: var(--primary-green) !important; 
    color: white !important;
 }
 
-.navbar .btn:hover {
-   background-color: #1f6391 !important; 
+.btn-primary-admin:hover {
+   background-color: var(--btn-hover) !important;
+}
+
+.btn-secondary-admin {
+    background-color: var(--white) !important;
+    color: var(--dark-text) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.btn-secondary-admin:hover {
+    background-color: #eeeeee !important;
+}
+
+table { 
+    width: 100%; 
+    border-collapse: separate; 
+    border-spacing: 0;
+    margin-top: 20px; 
+    table-layout: fixed;
+}
+
+th { 
+    background-color: var(--primary-green); 
+    color: white; 
+    padding: 15px;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+th:first-child { border-top-left-radius: 10px; }
+th:last-child { border-top-right-radius: 10px; }
+
+td { 
+    padding: 15px; 
+    border-bottom: 1px solid var(--border-color);
+    background: var(--white);
+    word-wrap: break-word; /* Chống tràn chữ */
+}
+
+.price {
+    color: var(--primary-green);
+    font-weight: bold;
+}
+
+td {
+    overflow-wrap: break-word;
+    max-width: 200px;
+}
+
+form {
+    display: flex;
+    flex-direction: column; 
+    gap: 15px; 
+    max-width: 600px; 
+    margin: 0 auto; 
+}
+
+form input, 
+form select, 
+form textarea {
+    width: 100%; 
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px; 
+    font-size: 1rem;
+    background-color: #fff;
+    box-sizing: border-box; 
+}
+
+form .btn-success-add {
+    width: 100%; 
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.btn-back {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #7f8c8d !important; 
+    color: white !important;
+    padding: 10px;
+    border-radius: 25px;
+    text-decoration: none;
+    margin-top: 10px;
 }

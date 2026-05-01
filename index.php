@@ -1,11 +1,12 @@
 <?php
+// ── Data & Logic ───────────────────────────────────────────────────────────────
 include __DIR__ . '/database/config/db.php';
 include __DIR__ . '/includes/product_helpers.php';
 
-$products = [];
+$products     = [];
 $productCount = 0;
 
-$sql = "SELECT * FROM Products";
+$sql    = "SELECT * FROM Products";
 $result = mysqli_query($conn, $sql);
 
 if ($result) {
@@ -18,78 +19,107 @@ if ($result) {
 $featuredProducts = array_slice($products, 0, 4);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetShop | Trang chu</title>
+    <title>PetShop | Trang chủ</title>
+
+    <!-- Google Fonts preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Page stylesheet (tách riêng) -->
+    <link rel="stylesheet" href="/assets/css/index.css">
 </head>
 <body>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/PetShop/includes/header.php'; ?>
+
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php'; ?>
 
 <main class="container page-section">
+
+    <!-- ── Hero ──────────────────────────────────────────── -->
     <section class="hero">
+
+        <!-- Main hero card -->
         <div class="hero-card">
-            <span class="eyebrow">Cham soc thu cung moi ngay</span>
-            <h1>Khong gian mua sam danh cho boss va sen.</h1>
+            <span class="eyebrow">Chăm sóc thú cưng mỗi ngày</span>
+            <h1>Không gian mua sắm cho&nbsp;"Boss &amp; Sen".</h1>
             <p>
-                PetShop mang den thuc an, phu kien va vat dung can thiet cho thu cung.
-                Giao dien moi giup nguoi dung xem san pham nhanh hon va di chuyen de dang hon.
+                PetShop mang đến thú cưng bạn yêu thích cùng các vật dụng,
+                thức ăn chất lượng mà "Boss" của bạn cần mỗi ngày.
             </p>
+
             <div class="hero-actions">
-                <a class="btn btn-primary" href="/PetShop/products.php">Xem tat ca san pham</a>
-                <a class="btn btn-secondary" href="/PetShop/auth/register.php">Tao tai khoan</a>
+                <a class="btn btn-primary" href="/products.php">
+                    🛍️ Xem tất cả sản phẩm
+                </a>
+                <a class="btn btn-secondary" href="/auth/register.php">
+                    Tạo tài khoản
+                </a>
             </div>
+
+            <!-- Stats strip -->
             <div class="stats">
                 <div class="panel">
-                    <strong><?php echo $productCount; ?></strong>
-                    <span>San pham dang co</span>
+                    <strong><?php echo $productCount; ?>+</strong>
+                    <span>sản phẩm</span>
                 </div>
                 <div class="panel">
                     <strong>24/7</strong>
-                    <span>Ho tro dat hang</span>
+                    <span>Hỗ trợ đặt hàng</span>
                 </div>
                 <div class="panel">
                     <strong>100%</strong>
-                    <span>Tap trung vao thu cung</span>
+                    <span>Tập trung vào thú cưng</span>
                 </div>
             </div>
         </div>
 
+        <!-- Aside info card -->
         <aside class="hero-card hero-aside">
-            <h2>Ly do nguoi dung se thay de dung hon</h2>
-            <ul>
-                <li>Trang chu co khu vuc gioi thieu ro rang va nut dieu huong noi bat.</li>
-                <li>Danh sach san pham duoc hien thi dang the, de xem tren dien thoai va may tinh.</li>
-                <li>Thanh menu da bo sung trang san pham rieng de truy cap nhanh.</li>
+            <h2>Dễ dàng cho người dùng</h2>
+            <ul class="aside-features">
+                <li>Đặt hàng nhanh, giao hàng tận nơi</li>
+                <li>Sản phẩm chính hãng, kiểm định chất lượng</li>
+                <li>Thanh toán linh hoạt, bảo mật</li>
+                <li>Hỗ trợ tư vấn chăm sóc thú cưng</li>
             </ul>
         </aside>
-    </section>
 
+    </section><!-- /hero -->
+
+    <!-- ── Featured Products ──────────────────────────────── -->
     <section>
         <div class="section-heading">
             <div>
-                <span class="eyebrow">San pham noi bat</span>
-                <h2>Goi y cho lan mua sam dau tien</h2>
-                <p>Mot vai san pham dau tien duoc lay tu co so du lieu de nguoi dung xem nhanh.</p>
+                <span class="eyebrow">Sản phẩm nổi bật</span>
+                <h2>Đề xuất cho bạn</h2>
             </div>
-            <a class="btn btn-secondary" href="/PetShop/products.php">Mo danh sach day du</a>
+            <a class="btn btn-secondary" href="/products.php">Xem tất cả</a>
         </div>
 
         <?php if (!empty($featuredProducts)) : ?>
             <div class="product-grid">
                 <?php foreach ($featuredProducts as $product) : ?>
                     <?php
-                    $productName = $product['product_name'] ?? 'San pham dang cap nhat';
-                    $productPrice = isset($product['price_new']) ? number_format((float) $product['price_new']) . ' VND' : 'Lien he';
-                    $productDescription = $product['description'] ?? 'San pham danh cho thu cung, thong tin chi tiet se duoc bo sung som.';
-                    $category = $product['category'] ?? 'Pet care';
-                    $productImage = petshop_product_image($product);
-                    $productAlt = petshop_product_alt($product);
+                    $productName        = $product['product_name']  ?? 'Sản phẩm đang cập nhật';
+                    $productPrice       = isset($product['price_new'])
+                                            ? number_format((float) $product['price_new']) . ' ₫'
+                                            : 'Liên hệ';
+                    $productDescription = $product['description']   ?? 'Thông tin chi tiết sẽ được bổ sung sớm.';
+                    $category           = $product['category']      ?? 'Pet care';
+                    $productImage       = petshop_product_image($product);
+                    $productAlt         = petshop_product_alt($product);
                     ?>
                     <article class="product-card">
                         <div class="product-image-shell">
-                            <img class="product-image" src="<?php echo htmlspecialchars($productImage); ?>" alt="<?php echo htmlspecialchars($productAlt); ?>">
+                            <img
+                                class="product-image"
+                                src="<?php echo htmlspecialchars($productImage); ?>"
+                                alt="<?php echo htmlspecialchars($productAlt); ?>"
+                                loading="lazy"
+                            >
                         </div>
                         <span class="product-badge"><?php echo htmlspecialchars($category); ?></span>
                         <h3><?php echo htmlspecialchars($productName); ?></h3>
@@ -98,13 +128,16 @@ $featuredProducts = array_slice($products, 0, 4);
                     </article>
                 <?php endforeach; ?>
             </div>
+
         <?php else : ?>
             <div class="empty-state">
-                <h3>Chua co san pham nao trong he thong</h3>
-                <p>Hay kiem tra bang Products trong database petshop_db de hien thi du lieu tai day.</p>
+                <h3>🐾 Chưa có sản phẩm nào trong hệ thống</h3>
             </div>
         <?php endif; ?>
-    </section>
+
+    </section><!-- /featured products -->
+
 </main>
+
 </body>
 </html>

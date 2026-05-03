@@ -16,7 +16,9 @@ Dự án này là một ứng dụng web quản lý cửa hàng thú cưng, đư
 
   👥 Phân công nhiệm vụ (Project Members)
   Dự án được thực hiện với sự phối hợp chặt chẽ giữa các thành viên:
-  Member 1: Database + Auth
+  
+
+Member 1: Database + Auth
   -Thiết kế CSDL, xử lý lớp Database.php, User.php, chức năng Login/Logout/Register và phân quyền Admin.
 
   Member 2: Logic nghiệp vụ

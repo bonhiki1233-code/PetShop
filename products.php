@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/database/config/db.php';
+include __DIR__ . '/config/db.php';
 include __DIR__ . '/includes/product_helpers.php';
 
 $products = [];
@@ -36,6 +36,14 @@ if ($result) {
                 <span class="product-badge"><?= htmlspecialchars($category) ?></span>
                 <h3><?= htmlspecialchars($productName) ?></h3>
                 <p class="price"><?= $productPrice ?></p>
+    
+                <form action="cart/cart.php" method="POST" style="margin-top: 15px;">
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                    <input type="hidden" name="product_name" value="<?= htmlspecialchars($productName) ?>">
+                    <input type="hidden" name="price" value="<?= $product['price_new'] ?>">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Thêm vào giỏ</button>
+                </form>
             </article>
             <?php endforeach; ?>
         </div>

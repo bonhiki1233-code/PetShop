@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/database/config/db.php';
+include __DIR__ . '/config/db.php';
 include __DIR__ . '/includes/product_helpers.php'; 
 
 $products     = [];

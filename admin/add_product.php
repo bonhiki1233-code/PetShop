@@ -25,12 +25,13 @@ if(isset($_POST['add_product'])){
     // Xử lý ảnh
     $image_url = null;
     if(!empty($_FILES['image']['name'])){
-        $image_name     = time() . '_' . basename($_FILES['image']['name']);
-        $image_tmp      = $_FILES['image']['tmp_name'];
-        $image_folder   = '../uploaded_img/' . $image_name;
- 
+        $image_name = time() . '_' . basename($_FILES['image']['name']);
+        $image_tmp = $_FILES['image']['tmp_name'];
+        
+        $image_folder = '../assets/images/' . $image_name;
+    
         if(move_uploaded_file($image_tmp, $image_folder)){
-            $image_url = 'uploaded_img/' . $image_name;
+            $image_url = $image_name; 
         } else {
             echo "<script>alert('Lỗi khi upload ảnh!');</script>";
         }
@@ -50,7 +51,7 @@ if(isset($_POST['add_product'])){
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <link rel="stylesheet" href="admin_style.css">
+    <link rel="stylesheet" href="../assets/css/admin_style.css">
     <title>Thêm sản phẩm</title>
 </head>
 <body>

@@ -50,17 +50,21 @@ if(isset($_POST['update_product'])){
     $stmt->execute([$product_name, $price_old, $price_new, $stock_quantity, $description, $is_pet, $slug, $category_id, $update_p_id]);
  
     // Xử lý ảnh nếu có upload mới
-    if(!empty($_FILES['image']['name'])){
-        $image_name     = time() . '_' . basename($_FILES['image']['name']);
-        $image_tmp      = $_FILES['image']['tmp_name'];
-        $image_folder   = '../uploaded_img/' . $image_name;
-        $image_url      = 'uploaded_img/' . $image_name;
- 
-        if(move_uploaded_file($image_tmp, $image_folder)){
-            $img_stmt = $db->prepare("UPDATE `products` SET image_url = ? WHERE product_id = ?");
-            $img_stmt->execute([$image_url, $update_p_id]);
-        }
-    }
+   if(!empty($_FILES['image']['name'])){
+      $image_name = time() . '_' . basename($_FILES['image']['name']);
+      $image_tmp = $_FILES['image']['tmp_name'];
+  
+      // Trỏ đúng vào thư mục assets mới
+      $image_folder = '../assets/images/' . $image_name;
+  
+      if(move_uploaded_file($image_tmp, $image_folder)){
+          // Cập nhật database
+          $img_stmt = $db->prepare("UPDATE `Products` SET image_url = ? WHERE product_id = ?");
+          $img_stmt->execute([$image_name, $update_p_id]);
+      } else {
+          echo "<script>alert('Lỗi: Không thể di chuyển file ảnh vào thư mục!');</script>";
+      }
+   }
  
     header('location:admin_products.php');
     exit();
@@ -72,7 +76,7 @@ if(isset($_POST['update_product'])){
 <head>
     <meta charset="UTF-8">
     <title>Sửa sản phẩm</title>
-    <link rel="stylesheet" href="admin_style.css">
+    <link rel="stylesheet" href="../assets/css/admin_style.css">
 </head>
 <body>
 <section class="container">

@@ -23,7 +23,7 @@ if(isset($_GET['delete'])){
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <link rel="stylesheet" href="admin_style.css">
+    <link rel="stylesheet" href="../assets/css/admin_style.css">
     <title>Admin - Quản lý sản phẩm</title>
 </head>
 <body>
@@ -57,9 +57,9 @@ if(isset($_GET['delete'])){
                 <tr>
                     <td>
                         <?php if(!empty($row['image_url'])): ?>
-                            <img src="../<?php echo htmlspecialchars($row['image_url']); ?>" width="50" height="50" style="object-fit: cover;">
+                            <img src="../assets/images/<?php echo htmlspecialchars($row['image_url']); ?>" height="80" style="border-radius: 8px; object-fit: cover;">
                         <?php else: ?>
-                            <span>Không có ảnh</span>
+                            <span style="color: #e74c3c; font-weight: bold; font-size: 0.9em;">Không có ảnh</span>
                         <?php endif; ?>
                     </td>
                     <td><?php echo htmlspecialchars($row['product_name']); ?></td>

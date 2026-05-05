@@ -35,6 +35,7 @@ if(isset($_GET['delete'])){
 <body>
     <header class="header">
         <nav class="navbar">
+            <a href="admin_users.php" class="btn">Quản lý Người dùng</a>
             <a href="admin_products.php" class="btn">Quản lý Sản phẩm</a>
             <a href="admin_orders.php" class="btn">Quản lý Đơn hàng</a>
             <a href="../index.php" class="btn btn-secondary-admin">Trở về</a>

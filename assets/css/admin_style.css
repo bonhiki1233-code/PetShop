@@ -12,15 +12,16 @@ body {
     font-family: 'Arial', sans-serif; 
     background-color: var(--light-bg); 
     color: var(--dark-text);
-    padding: 20px; 
+    padding: 8px 12px; 
     margin: 0;
 }
 
 .container { 
-    max-width: 1100px; 
-    margin: auto; 
+    width: 100%;
+    max-width: none; 
+    margin: 0; 
     background: var(--white); 
-    padding: 30px; 
+    padding: 24px; 
     border-radius: 15px; 
     box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
 }
@@ -28,9 +29,10 @@ body {
 .navbar {
    display: flex;             
    justify-content: flex-start;   
+   flex-wrap: wrap;
    gap: 10px;                 
-   margin-bottom: 30px;
-   padding: 15px 0;
+   margin-bottom: 16px;
+   padding: 12px 0;
    border-bottom: 1px solid var(--border-color);
 }
 
@@ -70,7 +72,7 @@ table {
     border-collapse: separate; 
     border-spacing: 0;
     margin-top: 20px; 
-    table-layout: fixed;
+    table-layout: auto;
 }
 
 th { 
@@ -100,15 +102,15 @@ td {
 
 td {
     overflow-wrap: break-word;
-    max-width: 200px;
+    max-width: none;
 }
 
 form {
     display: flex;
     flex-direction: column; 
     gap: 15px; 
-    max-width: 600px; 
-    margin: 0 auto; 
+    max-width: 1000px; 
+    margin: 0; 
 }
 
 form input, 
@@ -141,4 +143,20 @@ form .btn-success-add {
     border-radius: 25px;
     text-decoration: none;
     margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 6px;
+    }
+
+    .container {
+        padding: 16px;
+        border-radius: 10px;
+    }
+
+    th,
+    td {
+        padding: 12px 10px;
+    }
 }

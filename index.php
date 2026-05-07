@@ -28,9 +28,10 @@ $featuredProducts = array_slice($products, 0, 4);
                 <h1>Không gian mua sắm cho "Boss & Sen".</h1>
                 <p>PetShop mang đến thú cưng bạn yêu thích cùng các vật dụng, thức ăn chất lượng mà "Boss" của bạn cần mỗi ngày.</p>
                 <div class="hero-actions">
-                    <a class="btn btn-primary" href="<?= $base_url ?>/products.php">🛍️ Xem tất cả sản phẩm</a>
+                    <a class="btn btn-primary" href="/PetShop/products.php">🛍️ Xem tất cả sản phẩm</a>
+                    <a class="btn btn-secondary" href="/PetShop/search.php">🔍 Tìm kiếm sản phẩm</a>
                     <?php if(!isset($_SESSION['user_id'])): ?>
-                    <a class="btn btn-secondary" href="<?= $base_url ?>/auth/register.php">Tạo tài khoản</a>
+                    <a class="btn btn-secondary" href="/PetShop/auth/register.php">Tạo tài khoản</a>
                     <?php endif; ?>
                 </div>
                 <div class="stats">
@@ -57,7 +58,7 @@ $featuredProducts = array_slice($products, 0, 4);
                     <span class="eyebrow">Sản phẩm nổi bật</span>
                     <h2>Đề xuất cho bạn</h2>
                 </div>
-                <a class="btn btn-secondary" href="<?= $base_url ?>/products.php">Xem tất cả</a>
+                <a class="btn btn-secondary" href="/PetShop/products.php">Xem tất cả</a>
             </div>
             
             <div class="product-grid">
@@ -66,7 +67,6 @@ $featuredProducts = array_slice($products, 0, 4);
                     $productName = $product['product_name'] ?? 'Sản phẩm';
                     $productPrice = isset($product['price_new']) ? number_format((float) $product['price_new']) . ' ₫' : 'Liên hệ';
                     $category = $product['category'] ?? 'Pet care';
-                    
                     $productImage = !empty($product['image_url']) ? $img_path . htmlspecialchars($product['image_url']) : petshop_product_image($product);
                 ?>
                 <article class="product-card">

@@ -7,16 +7,25 @@ $db = (new Database())->getConnection();
 $userObj = new User($db);
 $message = "";
 
+if (isset($_GET['error']) && $_GET['error'] == 'locked') {
+    $message = "Tài khoản của bạn đã bị khóa bởi Quản trị viên!";
+}
+
 if (isset($_GET['success'])) $message = "Đăng ký thành công! Mời bạn đăng nhập.";
 
 if (isset($_POST['login'])) {
     $user = $userObj->login($_POST['username'], $_POST['password']);
+    
     if ($user) {
+        if (isset($user['is_active']) && $user['is_active'] == 0) {
+            $message = "Tài khoản này đã bị khóa. Vui lòng liên hệ Admin!";
+        } else {
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
         header("Location: ../index.php");
         exit();
+        }
     } else {
         $message = "Sai tài khoản hoặc mật khẩu!";
     }

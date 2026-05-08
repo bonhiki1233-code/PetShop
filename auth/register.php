@@ -7,8 +7,13 @@ $userObj = new User($db);
 $error = "";
 
 if (isset($_POST['register'])) {
-    $u = $_POST['username'];
-    $e = $_POST['email'];
+    //$u = $_POST['username'];
+    $u = filter_input(INPUT_POST, "username",
+                    FILTER_SANITIZE_SPECIAL_CHARS);    
+
+    //$e = $_POST['email'];
+    $e = filter_input(INPUT_POST, "email",
+                    FILTER_SANITIZE_EMAIL);     
     $p = $_POST['password'];
 
     if ($userObj->register($u, $e, $p)) {

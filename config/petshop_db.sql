@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 08, 2026 at 06:51 PM
+-- Generation Time: May 08, 2026 at 07:00 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,130 @@ SET time_zone = "+00:00";
 --
 -- Database: `petshop_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Cart`
+--
+
+CREATE TABLE `Cart` (
+  `cart_id` int(10) UNSIGNED NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Categories`
+--
+
+CREATE TABLE `Categories` (
+  `category_id` int(10) UNSIGNED NOT NULL,
+  `category_name` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `parent_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Categories`
+--
+
+INSERT INTO `Categories` (`category_id`, `category_name`, `description`, `parent_id`) VALUES
+(1, 'Chó cảnh', 'Các giống chó nhập khẩu và nội địa', NULL),
+(2, 'Mèo cảnh', 'Các giống mèo Anh lông ngắn, lông dài', NULL),
+(3, 'Phụ Kiện', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Feedback`
+--
+
+CREATE TABLE `Feedback` (
+  `feedback_id` int(10) UNSIGNED NOT NULL,
+  `full_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `message` text NOT NULL,
+  `status` enum('NEW','READ','REPLIED') DEFAULT 'NEW',
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Orders`
+--
+
+CREATE TABLE `Orders` (
+  `order_id` int(11) NOT NULL,
+  `total_amount` decimal(15,2) NOT NULL,
+  `order_status` enum('PENDING','SHIPPING','DELIVERED','CANCELED') DEFAULT 'PENDING',
+  `shipping_address` text DEFAULT NULL,
+  `order_date` timestamp NULL DEFAULT current_timestamp(),
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Orders`
+--
+
+INSERT INTO `Orders` (`order_id`, `total_amount`, `order_status`, `shipping_address`, `order_date`, `user_id`) VALUES
+(4, 9000000.00, 'PENDING', 'jllkj', '2026-05-05 04:50:59', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Order_Details`
+--
+
+CREATE TABLE `Order_Details` (
+  `detail_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `unit_price` decimal(12,2) DEFAULT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Order_Details`
+--
+
+INSERT INTO `Order_Details` (`detail_id`, `quantity`, `unit_price`, `order_id`, `product_id`) VALUES
+(8, 1, 5000000.00, 4, 1),
+(9, 1, 4000000.00, 4, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Payment`
+--
+
+CREATE TABLE `Payment` (
+  `payment_id` int(11) NOT NULL,
+  `payment_method` enum('COD','BANK','MOMO','VNPAY') DEFAULT NULL,
+  `amount` decimal(15,2) DEFAULT NULL,
+  `transaction_id` varchar(255) DEFAULT NULL,
+  `payment_status` varchar(45) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `order_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Policies`
+--
+
+CREATE TABLE `Policies` (
+  `policy_id` int(10) UNSIGNED NOT NULL,
+  `policy_type` enum('WARRANTY','RETURN','SHIPPING') NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -152,9 +276,114 @@ INSERT INTO `Products` (`product_id`, `product_name`, `price_old`, `price_new`, 
 (105, 'Bàn Chải Đánh Răng Thú Cưng', NULL, 35000.00, 100, NULL, 'Đeo ngón tay tiện lợi.', 0, 'ban-chai-danh-rang-thu-cung', 3),
 (106, 'Găng Tay Chải Lông Lấy Lông Rụng', 65000.00, 50000.00, 120, NULL, 'Vừa vuốt ve vừa lấy đi lông chết.', 0, 'gang-tay-chai-long-lay-long-rung', 3);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Promotions`
+--
+
+CREATE TABLE `Promotions` (
+  `promo_id` int(10) UNSIGNED NOT NULL,
+  `promo_name` varchar(100) NOT NULL,
+  `discount_percent` decimal(5,2) DEFAULT NULL,
+  `start_date` datetime DEFAULT NULL,
+  `end_date` datetime DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Reviews`
+--
+
+CREATE TABLE `Reviews` (
+  `review_id` int(11) NOT NULL,
+  `rating` tinyint(4) DEFAULT NULL,
+  `comment` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Users`
+--
+
+CREATE TABLE `Users` (
+  `user_id` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `full_name` varchar(100) DEFAULT NULL,
+  `role` enum('ADMIN','CUSTOMER') DEFAULT 'CUSTOMER',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `is_active` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Users`
+--
+
+INSERT INTO `Users` (`user_id`, `email`, `password`, `username`, `full_name`, `role`, `created_at`, `is_active`) VALUES
+(6, 'admin12@gmail.com', '$2y$10$Q.g5MZOXJROZdgP/zQXavuA4XHAwR8iSUZc1XhdTOQqMtD/HXJaQi', 'Admin', NULL, 'ADMIN', '2026-04-19 01:12:09', 1),
+(7, 'bonhiki1233@gmail.com', '$2y$10$oPZ/pFfyWCmGSQD7V6XUoOEeRBv7P0ihwM3rs1V0HpRhBPfNDE3mG', 'bonhiki1233', NULL, 'CUSTOMER', '2026-04-29 18:26:36', 1),
+(9, 'customer1233@gmail.com', '$2y$10$UxWFU7Nvy8DRMSaLEG2AWO6pJP4Ciep2l7UxEfRQx0B3QYpagADOm', 'Customer', NULL, 'CUSTOMER', '2026-05-04 00:14:19', 1);
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `Cart`
+--
+ALTER TABLE `Cart`
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `fk_cart_users` (`user_id`),
+  ADD KEY `fk_cart_products` (`product_id`);
+
+--
+-- Indexes for table `Categories`
+--
+ALTER TABLE `Categories`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `Feedback`
+--
+ALTER TABLE `Feedback`
+  ADD PRIMARY KEY (`feedback_id`),
+  ADD KEY `fk_feedback_users` (`user_id`);
+
+--
+-- Indexes for table `Orders`
+--
+ALTER TABLE `Orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `fk_orders_users` (`user_id`);
+
+--
+-- Indexes for table `Order_Details`
+--
+ALTER TABLE `Order_Details`
+  ADD PRIMARY KEY (`detail_id`),
+  ADD KEY `fk_details_orders` (`order_id`),
+  ADD KEY `fk_details_products` (`product_id`);
+
+--
+-- Indexes for table `Payment`
+--
+ALTER TABLE `Payment`
+  ADD PRIMARY KEY (`payment_id`),
+  ADD KEY `fk_payment_orders` (`order_id`);
+
+--
+-- Indexes for table `Policies`
+--
+ALTER TABLE `Policies`
+  ADD PRIMARY KEY (`policy_id`);
 
 --
 -- Indexes for table `Products`
@@ -165,8 +394,71 @@ ALTER TABLE `Products`
   ADD KEY `fk_products_categories` (`category_id`);
 
 --
+-- Indexes for table `Promotions`
+--
+ALTER TABLE `Promotions`
+  ADD PRIMARY KEY (`promo_id`);
+
+--
+-- Indexes for table `Reviews`
+--
+ALTER TABLE `Reviews`
+  ADD PRIMARY KEY (`review_id`),
+  ADD KEY `fk_reviews_users` (`user_id`),
+  ADD KEY `fk_reviews_products` (`product_id`);
+
+--
+-- Indexes for table `Users`
+--
+ALTER TABLE `Users`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `user_id_UNIQUE` (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `Cart`
+--
+ALTER TABLE `Cart`
+  MODIFY `cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Categories`
+--
+ALTER TABLE `Categories`
+  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `Feedback`
+--
+ALTER TABLE `Feedback`
+  MODIFY `feedback_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Orders`
+--
+ALTER TABLE `Orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `Order_Details`
+--
+ALTER TABLE `Order_Details`
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `Payment`
+--
+ALTER TABLE `Payment`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Policies`
+--
+ALTER TABLE `Policies`
+  MODIFY `policy_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Products`
@@ -175,14 +467,71 @@ ALTER TABLE `Products`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
+-- AUTO_INCREMENT for table `Promotions`
+--
+ALTER TABLE `Promotions`
+  MODIFY `promo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Reviews`
+--
+ALTER TABLE `Reviews`
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Users`
+--
+ALTER TABLE `Users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `Cart`
+--
+ALTER TABLE `Cart`
+  ADD CONSTRAINT `fk_cart_products` FOREIGN KEY (`product_id`) REFERENCES `Products` (`product_id`),
+  ADD CONSTRAINT `fk_cart_users` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`);
+
+--
+-- Constraints for table `Feedback`
+--
+ALTER TABLE `Feedback`
+  ADD CONSTRAINT `fk_feedback_users` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`);
+
+--
+-- Constraints for table `Orders`
+--
+ALTER TABLE `Orders`
+  ADD CONSTRAINT `fk_orders_users` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `Order_Details`
+--
+ALTER TABLE `Order_Details`
+  ADD CONSTRAINT `fk_details_orders` FOREIGN KEY (`order_id`) REFERENCES `Orders` (`order_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_details_products` FOREIGN KEY (`product_id`) REFERENCES `Products` (`product_id`);
+
+--
+-- Constraints for table `Payment`
+--
+ALTER TABLE `Payment`
+  ADD CONSTRAINT `fk_payment_orders` FOREIGN KEY (`order_id`) REFERENCES `Orders` (`order_id`);
 
 --
 -- Constraints for table `Products`
 --
 ALTER TABLE `Products`
   ADD CONSTRAINT `fk_products_categories` FOREIGN KEY (`category_id`) REFERENCES `Categories` (`category_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `Reviews`
+--
+ALTER TABLE `Reviews`
+  ADD CONSTRAINT `fk_reviews_products` FOREIGN KEY (`product_id`) REFERENCES `Products` (`product_id`),
+  ADD CONSTRAINT `fk_reviews_users` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

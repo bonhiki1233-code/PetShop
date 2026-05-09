@@ -88,6 +88,20 @@ include "../includes/header.php";
                         <input id="diachi" type="text" name="diachi" placeholder="S&#7889; nh&#224;, &#273;&#432;&#7901;ng, qu&#7853;n/huy&#7879;n, th&#224;nh ph&#7889;..." required>
                     </div>
 
+                    <div class="form-field">
+                        <label style="font-weight: bold; margin-bottom: 10px; display: block;">Phương thức thanh toán</label>
+                        <div style="display: flex; flex-direction: column; gap: 12px; background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px;">
+                            <label style="cursor: pointer; display: flex; align-items: center; gap: 10px;">
+                                <input type="radio" name="payment_method" value="COD" checked>
+                                <span>Thanh toán khi nhận hàng (COD)</span>
+                            </label>
+                            <label style="cursor: pointer; display: flex; align-items: center; gap: 10px;">
+                                <input type="radio" name="payment_method" value="BANK">
+                                <span>Chuyển khoản ngân hàng (VietQR)</span>
+                            </label>
+                        </div>
+                    </div>
+
                     <button type="submit" name="checkout" class="btn btn-primary login-submit">X&#225;c nh&#7853;n &#273;&#7863;t h&#224;ng</button>
                     <a href="cart.php" class="btn btn-secondary checkout-back">Quay l&#7841;i gi&#7887; h&#224;ng</a>
                 </form>

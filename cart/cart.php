@@ -34,7 +34,7 @@ $total = 0;
 
 <main class="container page-section">
     <div class="panel">
-        <h2>Gio hang cua ban</h2>
+        <h2>Giỏ hàng của bạn</h2>
 
         <?php if (empty($_SESSION['cart'])): ?>
             <div class="empty-state">
@@ -44,29 +44,29 @@ $total = 0;
         <?php else: ?>
             <table style="width:100%; margin-top:20px; border-collapse: collapse;">
                 <tr style="border-bottom: 2px solid var(--line); text-align: left;">
-                    <th style="padding: 10px;">San pham</th>
-                    <th>Don gia</th>
-                    <th>So luong</th>
-                    <th>Thanh tien</th>
-                    <th>Thao tac</th>
+                    <th style="padding: 10px;">Sản phẩm</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th>Thao tác</th>
                 </tr>
                 <?php foreach ($_SESSION['cart'] as $id => $item):
                     $subtotal = $item['gia'] * $item['soluong'];
                     $total += $subtotal;
                 ?>
-                <tr style="border-bottom: 1px solid var(--line);">
-                    <td style="padding: 15px 10px;"><strong><?= htmlspecialchars($item['ten']) ?></strong></td>
-                    <td><?= number_format($item['gia']) ?> d</td>
-                    <td><?= $item['soluong'] ?></td>
-                    <td style="color: var(--brand); font-weight: bold;"><?= number_format($subtotal) ?> d</td>
-                    <td><a href="cart.php?remove=<?= $id ?>" class="btn btn-secondary" style="padding: 5px 10px; font-size: 0.8rem;">Xoa</a></td>
-                </tr>
+                    <tr style="border-bottom: 1px solid var(--line);">
+                        <td style="padding: 15px 10px;"><strong><?= htmlspecialchars($item['ten']) ?></strong></td>
+                        <td><?= number_format($item['gia']) ?> d</td>
+                        <td><?= $item['soluong'] ?></td>
+                        <td style="color: var(--brand); font-weight: bold;"><?= number_format($subtotal) ?> d</td>
+                        <td><a href="cart.php?remove=<?= $id ?>" class="btn btn-secondary" style="padding: 5px 10px; font-size: 0.8rem;">Xóa</a></td>
+                    </tr>
                 <?php endforeach; ?>
             </table>
 
             <div style="text-align: right; margin-top: 20px;">
-                <h3 style="font-size: 1.5rem;">Tong cong: <span style="color: var(--brand);"><?= number_format($total) ?> d</span></h3>
-                <a href="checkout.php" class="btn btn-primary" style="margin-top: 15px;">Tien hanh thanh toan</a>
+                <h3 style="font-size: 1.5rem;">Tổng cộng: <span style="color: var(--brand);"><?= number_format($total) ?> d</span></h3>
+                <a href="checkout.php" class="btn btn-primary" style="margin-top: 15px;">Tiến hành thanh toán</a>
             </div>
         <?php endif; ?>
     </div>

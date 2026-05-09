@@ -38,8 +38,8 @@ $total = 0;
 
         <?php if (empty($_SESSION['cart'])): ?>
             <div class="empty-state">
-                <p>Gio hang dang trong!</p>
-                <a href="../products.php" class="btn btn-primary" style="margin-top:15px;">Tiep tuc mua sam</a>
+                <p>Giỏ hàng đang trống!</p>
+                <a href="../products.php" class="btn btn-primary" style="margin-top:15px;">Tiếp tục mua sắm</a>
             </div>
         <?php else: ?>
             <table style="width:100%; margin-top:20px; border-collapse: collapse;">

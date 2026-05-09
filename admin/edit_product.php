@@ -59,41 +59,41 @@ if (isset($_POST['update_product'])) {
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Sua san pham</title>
+    <title>S&#7917;a s&#7843;n ph&#7849;m</title>
     <link rel="stylesheet" href="../assets/css/admin_style.css">
 </head>
 <body>
 <section class="container">
     <form action="" method="post" enctype="multipart/form-data">
-        <h3>Cap nhat san pham</h3>
+        <h3>C&#7853;p nh&#7853;t s&#7843;n ph&#7849;m</h3>
 
         <div style="text-align: center; margin-bottom: 15px;">
-            <p>Anh hien tai:</p>
+            <p>&#7842;nh hi&#7879;n t&#7841;i:</p>
             <img src="<?php echo htmlspecialchars(getProductImage($fetch_edit['image_url'] ?? '', '/PetShop', $fetch_edit)); ?>" height="150" style="border-radius: 8px; object-fit: cover;">
         </div>
 
         <input type="hidden" name="update_p_id" value="<?php echo $fetch_edit['product_id']; ?>">
 
-        <label>Ten san pham: <span style="color:red">*</span></label>
+        <label>T&#234;n s&#7843;n ph&#7849;m: <span style="color:red">*</span></label>
         <input type="text" name="product_name" value="<?php echo htmlspecialchars($fetch_edit['product_name']); ?>" class="box" required>
 
-        <label>Danh muc: <span style="color:red">*</span></label>
+        <label>Danh m&#7909;c: <span style="color:red">*</span></label>
         <select name="category_id" class="box" required>
             <option value="1" <?php if ($fetch_edit['category_id'] == 1) echo 'selected'; ?>>Thu cung</option>
             <option value="2" <?php if ($fetch_edit['category_id'] == 2) echo 'selected'; ?>>Thuc an</option>
             <option value="3" <?php if ($fetch_edit['category_id'] == 3) echo 'selected'; ?>>Phu kien</option>
         </select>
 
-        <label>Gia cu:</label>
+        <label>Gi&#225; c&#361;:</label>
         <input type="number" name="price_old" value="<?php echo $fetch_edit['price_old']; ?>" class="box" min="0" step="1000">
 
-        <label>Gia moi (VND): <span style="color:red">*</span></label>
+        <label>Gi&#225; m&#7899;i (VND): <span style="color:red">*</span></label>
         <input type="number" name="price_new" value="<?php echo $fetch_edit['price_new']; ?>" class="box" min="0" step="1000" required>
 
-        <label>So luong ton kho:</label>
+        <label>S&#7889; l&#432;&#7907;ng t&#7891;n kho:</label>
         <input type="number" name="stock_quantity" value="<?php echo $fetch_edit['stock_quantity']; ?>" class="box" min="0">
 
-        <label>Mo ta san pham:</label>
+        <label>M&#244; t&#7843; s&#7843;n ph&#7849;m:</label>
         <textarea name="description" class="box" rows="4"><?php echo htmlspecialchars($fetch_edit['description'] ?? ''); ?></textarea>
 
         <label>
@@ -101,7 +101,7 @@ if (isset($_POST['update_product'])) {
             La thu cung
         </label>
 
-        <label>Thay doi anh:</label>
+        <label>Thay &#273;&#7893;i &#7843;nh:</label>
         <input type="file" name="image" accept="image/png, image/jpg, image/jpeg" class="box">
 
         <input type="submit" value="Luu thay doi" name="update_product" class="btn btn-success-add">

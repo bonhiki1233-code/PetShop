@@ -81,6 +81,11 @@
   width: 100%;
 }
 
+.checkout-card {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
 .login-card-head {
   margin-bottom: 20px;
 }
@@ -189,6 +194,39 @@
 
 .login-register a:hover {
   color: var(--accent);
+}
+
+.checkout-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(201, 185, 154, 0.34);
+  color: var(--text-secondary);
+}
+
+.checkout-summary strong {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--bark);
+}
+
+.checkout-back {
+  width: 100%;
+  justify-content: center;
+}
+
+.checkout-success {
+  text-align: center;
+}
+
+.checkout-success p {
+  color: var(--text-secondary);
+  margin: 12px 0 22px;
 }
 
 @media (max-width: 980px) {

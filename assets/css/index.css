@@ -189,6 +189,26 @@ img { display: block; max-width: 100%; }
   transition: color .22s var(--ease-out), background .22s var(--ease-out), transform .22s var(--ease-out);
 }
 
+.cart-link {
+  position: relative;
+  gap: 8px;
+}
+
+.cart-count {
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--espresso);
+  color: var(--cream);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
 .site-nav > a:not(.btn):hover {
   color: var(--espresso);
   background: rgba(255, 255, 255, 0.7);

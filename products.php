@@ -57,7 +57,7 @@ if ($result) {
                     <h3><?= htmlspecialchars($productName) ?></h3>
                     <p class="price"><?= $productPrice ?></p>
 
-                    <form action="cart/cart.php" method="POST" style="margin-top: 15px;">
+                    <form action="<?= $base_url ?>/cart/cart.php" method="POST" style="margin-top: 15px;">
                         <input type="hidden" name="action" value="add">
                         <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
                         <input type="hidden" name="product_name" value="<?= htmlspecialchars($productName) ?>">

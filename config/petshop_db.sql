@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 08, 2026 at 07:00 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 09, 2026 lúc 01:40 PM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `petshop_db`
+-- Cơ sở dữ liệu: `petshop_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Cart`
+-- Cấu trúc bảng cho bảng `cart`
 --
 
-CREATE TABLE `Cart` (
+CREATE TABLE `cart` (
   `cart_id` int(10) UNSIGNED NOT NULL,
   `quantity` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -37,10 +37,10 @@ CREATE TABLE `Cart` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Categories`
+-- Cấu trúc bảng cho bảng `categories`
 --
 
-CREATE TABLE `Categories` (
+CREATE TABLE `categories` (
   `category_id` int(10) UNSIGNED NOT NULL,
   `category_name` varchar(100) NOT NULL,
   `description` text DEFAULT NULL,
@@ -48,10 +48,10 @@ CREATE TABLE `Categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Categories`
+-- Đang đổ dữ liệu cho bảng `categories`
 --
 
-INSERT INTO `Categories` (`category_id`, `category_name`, `description`, `parent_id`) VALUES
+INSERT INTO `categories` (`category_id`, `category_name`, `description`, `parent_id`) VALUES
 (1, 'Chó cảnh', 'Các giống chó nhập khẩu và nội địa', NULL),
 (2, 'Mèo cảnh', 'Các giống mèo Anh lông ngắn, lông dài', NULL),
 (3, 'Phụ Kiện', NULL, NULL);
@@ -59,10 +59,10 @@ INSERT INTO `Categories` (`category_id`, `category_name`, `description`, `parent
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Feedback`
+-- Cấu trúc bảng cho bảng `feedback`
 --
 
-CREATE TABLE `Feedback` (
+CREATE TABLE `feedback` (
   `feedback_id` int(10) UNSIGNED NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -75,10 +75,10 @@ CREATE TABLE `Feedback` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Orders`
+-- Cấu trúc bảng cho bảng `orders`
 --
 
-CREATE TABLE `Orders` (
+CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `total_amount` decimal(15,2) NOT NULL,
   `order_status` enum('PENDING','SHIPPING','DELIVERED','CANCELED') DEFAULT 'PENDING',
@@ -88,19 +88,19 @@ CREATE TABLE `Orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Orders`
+-- Đang đổ dữ liệu cho bảng `orders`
 --
 
-INSERT INTO `Orders` (`order_id`, `total_amount`, `order_status`, `shipping_address`, `order_date`, `user_id`) VALUES
+INSERT INTO `orders` (`order_id`, `total_amount`, `order_status`, `shipping_address`, `order_date`, `user_id`) VALUES
 (4, 9000000.00, 'PENDING', 'jllkj', '2026-05-05 04:50:59', 7);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Order_Details`
+-- Cấu trúc bảng cho bảng `order_details`
 --
 
-CREATE TABLE `Order_Details` (
+CREATE TABLE `order_details` (
   `detail_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `unit_price` decimal(12,2) DEFAULT NULL,
@@ -109,20 +109,20 @@ CREATE TABLE `Order_Details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Order_Details`
+-- Đang đổ dữ liệu cho bảng `order_details`
 --
 
-INSERT INTO `Order_Details` (`detail_id`, `quantity`, `unit_price`, `order_id`, `product_id`) VALUES
+INSERT INTO `order_details` (`detail_id`, `quantity`, `unit_price`, `order_id`, `product_id`) VALUES
 (8, 1, 5000000.00, 4, 1),
 (9, 1, 4000000.00, 4, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Payment`
+-- Cấu trúc bảng cho bảng `payment`
 --
 
-CREATE TABLE `Payment` (
+CREATE TABLE `payment` (
   `payment_id` int(11) NOT NULL,
   `payment_method` enum('COD','BANK','MOMO','VNPAY') DEFAULT NULL,
   `amount` decimal(15,2) DEFAULT NULL,
@@ -135,10 +135,10 @@ CREATE TABLE `Payment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Policies`
+-- Cấu trúc bảng cho bảng `policies`
 --
 
-CREATE TABLE `Policies` (
+CREATE TABLE `policies` (
   `policy_id` int(10) UNSIGNED NOT NULL,
   `policy_type` enum('WARRANTY','RETURN','SHIPPING') NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -148,10 +148,10 @@ CREATE TABLE `Policies` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Products`
+-- Cấu trúc bảng cho bảng `products`
 --
 
-CREATE TABLE `Products` (
+CREATE TABLE `products` (
   `product_id` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `price_old` decimal(12,2) DEFAULT NULL,
@@ -165,46 +165,46 @@ CREATE TABLE `Products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Products`
+-- Đang đổ dữ liệu cho bảng `products`
 --
 
-INSERT INTO `Products` (`product_id`, `product_name`, `price_old`, `price_new`, `stock_quantity`, `image_url`, `description`, `is_pet`, `slug`, `category_id`) VALUES
+INSERT INTO `products` (`product_id`, `product_name`, `price_old`, `price_new`, `stock_quantity`, `image_url`, `description`, `is_pet`, `slug`, `category_id`) VALUES
 (1, 'Chó Poodle Tiny', NULL, 5000000.00, 10, 'poodle-tiny.jpg', '', 1, 'ch-poodle-tiny', 1),
 (2, 'Mèo Anh lông ngắn', NULL, 4000000.00, 5, 'meo_anh.jpg', '', 1, 'm-o-anh-l-ng-ng-n', 2),
 (3, 'Chó Husky', NULL, 8000000.00, 3, 'husky.jpg', NULL, 1, 'cho-husky', 1),
 (4, 'Mèo Ba Tư Trắng', NULL, 6500000.00, 4, 'meo-ba-tu-trang.jpg', NULL, 1, 'meo-ba-tu-trang', 2),
 (5, 'Sữa tắm cho chó Poodle', NULL, 150000.00, 50, 'sua-tam-cho-poodle.jpg', NULL, 0, 'sua-tam-cho-poodle', 3),
 (6, 'Golden Retriever', NULL, 5000000.00, 5, 'golden-retriever.jpg', '', 0, 'golden', 1),
-(7, 'Chó Poodle Teacup Trắng', 6500000.00, 6000000.00, 5, NULL, 'Chó Poodle size siêu nhỏ màu trắng tuyết.', 1, 'cho-poodle-teacup-trang', 1),
-(8, 'Chó Poodle Toy Nâu Đỏ', NULL, 5000000.00, 10, NULL, 'Chó Poodle Toy lông xoăn tít màu nâu đỏ.', 1, 'cho-poodle-toy-nau-do', 1),
-(9, 'Chó Poodle Standard Đen', 8500000.00, 8000000.00, 3, NULL, 'Chó Poodle size lớn màu đen, cực kỳ thông minh.', 1, 'cho-poodle-standard-den', 1),
-(10, 'Chó Poodle Tiny Xám', 7000000.00, 6500000.00, 4, NULL, 'Chó Poodle Tiny màu xám hiếm.', 1, 'cho-poodle-tiny-xam', 1),
-(11, 'Chó Poodle Teacup Bò Sữa', NULL, 7500000.00, 2, NULL, 'Chó Poodle Teacup màu bò sữa ngộ nghĩnh.', 1, 'cho-poodle-teacup-bo-sua', 1),
-(12, 'Chó Poodle Toy Vàng Mơ', 5000000.00, 4500000.00, 8, NULL, 'Chó Poodle Toy màu vàng mơ óng ả.', 1, 'cho-poodle-toy-vang-mo', 1),
-(13, 'Chó Poodle Tiny Socola', NULL, 5500000.00, 6, NULL, 'Chó Poodle Tiny màu socola đậm.', 1, 'cho-poodle-tiny-socola', 1),
-(14, 'Chó Poodle Standard Nâu', 9000000.00, 8500000.00, 2, NULL, 'Chó Poodle Standard màu nâu, form dáng chuẩn.', 1, 'cho-poodle-standard-nau', 1),
-(15, 'Chó Poodle Toy Đen', NULL, 4000000.00, 12, NULL, 'Chó Poodle Toy màu đen bóng.', 1, 'cho-poodle-toy-den', 1),
-(16, 'Chó Poodle Tiny Trắng', 6000000.00, 5500000.00, 7, NULL, 'Chó Poodle Tiny trắng xinh như cục bông.', 1, 'cho-poodle-tiny-trang', 1),
-(17, 'Chó Corgi Tricolor', 12000000.00, 11000000.00, 5, NULL, 'Corgi 3 màu mông to chân cực ngắn.', 1, 'cho-corgi-tricolor', 1),
-(18, 'Chó Corgi Vàng Trắng', NULL, 10000000.00, 6, NULL, 'Corgi màu vàng trắng truyền thống.', 1, 'cho-corgi-vang-trang', 1),
-(19, 'Chó Golden Retriever', 8000000.00, 7500000.00, 8, NULL, 'Golden thân thiện, thích hợp nuôi gia đình.', 1, 'cho-golden-retriever', 1),
-(20, 'Chó Husky Đại Ngáo', NULL, 6500000.00, 4, NULL, 'Husky mắt xanh, năng động.', 1, 'cho-husky-dai-ngao', 1),
-(21, 'Chó Alaska Malamute', 10000000.00, 9500000.00, 3, NULL, 'Alaska xám trắng form to.', 1, 'cho-alaska-malamute', 1),
-(22, 'Chó Pug Mặt Xệ', NULL, 4500000.00, 7, NULL, 'Pug thuần chủng mặt xệ đáng yêu.', 1, 'cho-pug-mat-xe', 1),
-(23, 'Chó Phốc Sóc Pomeranian', 7500000.00, 7000000.00, 5, NULL, 'Phốc sóc mini lông xù.', 1, 'cho-phoc-soc-pomeranian', 1),
-(24, 'Chó Shiba Inu', 15000000.00, 14000000.00, 2, NULL, 'Shiba thuần chủng mặt cười.', 1, 'cho-shiba-inu', 1),
-(25, 'Chó Samoyed Trắng', NULL, 9000000.00, 3, NULL, 'Samoyed lông trắng muốt như tuyết.', 1, 'cho-samoyed-trang', 1),
-(26, 'Chó Beagle', 5500000.00, 5000000.00, 4, NULL, 'Beagle săn thỏ cực kỳ lanh lợi.', 1, 'cho-beagle', 1),
-(27, 'Mèo Anh Lông Ngắn Xám Xanh', 4500000.00, 4000000.00, 10, NULL, 'Mèo ALN xám xanh mặt nọng.', 1, 'meo-aln-xam-xanh', 2),
-(28, 'Mèo Anh Lông Ngắn Bicolor', NULL, 5000000.00, 8, NULL, 'Mèo ALN Bicolor hồng hào.', 1, 'meo-aln-bicolor', 2),
-(29, 'Mèo Anh Lông Ngắn Golden', 8000000.00, 7500000.00, 5, NULL, 'Mèo ALN Golden ny11 siêu đẹp.', 1, 'meo-aln-golden', 2),
-(30, 'Mèo Anh Lông Dài Trắng', NULL, 4500000.00, 7, NULL, 'Mèo ALD lông dài thướt tha.', 1, 'meo-ald-trang', 2),
-(31, 'Mèo Ba Tư Mặt Tịt', 6500000.00, 6000000.00, 4, NULL, 'Mèo Ba Tư mặt tịt quý tộc.', 1, 'meo-ba-tu-mat-tit', 2),
-(32, 'Mèo Scottish Fold Xám', NULL, 5500000.00, 6, NULL, 'Scottish tai cụp đáng yêu.', 1, 'meo-scottish-fold-xam', 2),
-(33, 'Mèo Bengal', 15000000.00, 14000000.00, 2, NULL, 'Mèo Bengal vằn báo hoang dã.', 1, 'meo-bengal', 2),
-(34, 'Mèo Xiêm Thái', 3500000.00, 3000000.00, 8, NULL, 'Mèo Xiêm thông minh quấn chủ.', 1, 'meo-xiem-thai', 2),
-(35, 'Mèo Sphynx Không Lông', NULL, 12000000.00, 3, NULL, 'Mèo Ai Cập không lông độc lạ.', 1, 'meo-sphynx-khong-long', 2),
-(36, 'Mèo Ragdoll Mắt Xanh', 18000000.00, 17000000.00, 2, NULL, 'Ragdoll bế lên là mềm nhũn.', 1, 'meo-ragdoll-mat-xanh', 2),
+(7, 'Chó Poodle Teacup Trắng', 6500000.00, 6000000.00, 5, '1778318192_cho-poodle-teacup-trang.jpg', 'Chó Poodle size siêu nhỏ màu trắng tuyết.', 1, 'ch-poodle-teacup-tr-ng', 1),
+(8, 'Chó Poodle Toy Nâu Đỏ', NULL, 5000000.00, 10, '1778318420_cho-poodle-toy-nau-do.jpg', 'Chó Poodle Toy lông xoăn tít màu nâu đỏ.', 1, 'ch-poodle-toy-n-u-', 1),
+(9, 'Chó Poodle Standard Đen', 8500000.00, 8000000.00, 3, '1778318434_cho-poodle-standard-den.jpg', 'Chó Poodle size lớn màu đen, cực kỳ thông minh.', 1, 'ch-poodle-standard-en', 1),
+(10, 'Chó Poodle Tiny Xám', 7000000.00, 6500000.00, 4, '1778318452_cho-poodle-tiny-xam.jpg', 'Chó Poodle Tiny màu xám hiếm.', 1, 'ch-poodle-tiny-x-m', 1),
+(11, 'Chó Poodle Teacup Bò Sữa', NULL, 7500000.00, 2, '1778318483_cho-poodle-teacup-bo-sua.jpg', 'Chó Poodle Teacup màu bò sữa ngộ nghĩnh.', 1, 'ch-poodle-teacup-b-s-a', 1),
+(12, 'Chó Poodle Toy Vàng Mơ', 5000000.00, 4500000.00, 8, '1778318495_cho-poodle-toy-vang-mo.jpg', 'Chó Poodle Toy màu vàng mơ óng ả.', 1, 'ch-poodle-toy-v-ng-m-', 1),
+(13, 'Chó Poodle Tiny Socola', NULL, 5500000.00, 6, '1778318516_cho-poodle-tiny-socola.jpg', 'Chó Poodle Tiny màu socola đậm.', 1, 'ch-poodle-tiny-socola', 1),
+(14, 'Chó Poodle Standard Nâu', 9000000.00, 8500000.00, 2, '1778318536_cho-poodle-standard-nau.jpg', 'Chó Poodle Standard màu nâu, form dáng chuẩn.', 1, 'ch-poodle-standard-n-u', 1),
+(15, 'Chó Poodle Toy Đen', NULL, 4000000.00, 12, '1778318563_cho-poodle-standard-den.jpg', 'Chó Poodle Toy màu đen bóng.', 1, 'ch-poodle-toy-en', 1),
+(16, 'Chó Poodle Tiny Trắng', 6000000.00, 5500000.00, 7, '1778318590_cho-poodle-tiny-trang.jpg', 'Chó Poodle Tiny trắng xinh như cục bông.', 1, 'ch-poodle-tiny-tr-ng', 1),
+(17, 'Chó Corgi Tricolor', 12000000.00, 11000000.00, 5, '1778318607_cho-corgi-tricolor.jpg', 'Corgi 3 màu mông to chân cực ngắn.', 1, 'ch-corgi-tricolor', 1),
+(18, 'Chó Corgi Vàng Trắng', NULL, 10000000.00, 6, '1778318621_cho-corgi-vang-trang.jpg', 'Corgi màu vàng trắng truyền thống.', 1, 'ch-corgi-v-ng-tr-ng', 1),
+(19, 'Chó Golden Retriever', 8000000.00, 7500000.00, 8, '1778318647_cho-golden-retriever.jpg', 'Golden thân thiện, thích hợp nuôi gia đình.', 1, 'ch-golden-retriever', 1),
+(20, 'Chó Husky Đại Ngáo', NULL, 6500000.00, 4, '1778318659_cho-husky-dai-ngao.jpg', 'Husky mắt xanh, năng động.', 1, 'ch-husky-i-ng-o', 1),
+(21, 'Chó Alaska Malamute', 10000000.00, 9500000.00, 3, '1778318670_cho-alaska-malamute.jpg', 'Alaska xám trắng form to.', 1, 'ch-alaska-malamute', 1),
+(22, 'Chó Pug Mặt Xệ', NULL, 4500000.00, 7, '1778318685_cho-pug-mat-xe.jpg', 'Pug thuần chủng mặt xệ đáng yêu.', 1, 'ch-pug-m-t-x-', 1),
+(23, 'Chó Phốc Sóc Pomeranian', 7500000.00, 7000000.00, 5, '1778318722_cho-phoc-soc-pomeranian.jpg', 'Phốc sóc mini lông xù.', 1, 'ch-ph-c-s-c-pomeranian', 1),
+(24, 'Chó Shiba Inu', 15000000.00, 14000000.00, 2, '1778318750_cho-shiba-inu.jpg', 'Shiba thuần chủng mặt cười.', 1, 'ch-shiba-inu', 1),
+(25, 'Chó Samoyed Trắng', NULL, 9000000.00, 3, '1778318805_cho-samoyed-trang.jpg', 'Samoyed lông trắng muốt như tuyết.', 1, 'ch-samoyed-tr-ng', 1),
+(26, 'Chó Beagle', 5500000.00, 5000000.00, 4, '1778315975_cho-beagle.jpg', 'Beagle săn thỏ cực kỳ lanh lợi.', 1, 'ch-beagle', 1),
+(27, 'Mèo Anh Lông Ngắn Xám Xanh', 4500000.00, 4000000.00, 10, '1778318863_meo-anh-long-ngan-xam-xanh.jpg', 'Mèo ALN xám xanh mặt nọng.', 1, 'm-o-anh-l-ng-ng-n-x-m-xanh', 2),
+(28, 'Mèo Anh Lông Ngắn Bicolor', NULL, 5000000.00, 8, '1778318883_meo-anh-long-ngan-bicolor.jpg', 'Mèo ALN Bicolor hồng hào.', 1, 'm-o-anh-l-ng-ng-n-bicolor', 2),
+(29, 'Mèo Anh Lông Ngắn Golden', 8000000.00, 7500000.00, 5, '1778318898_meo-anh-long-ngan-golden.jpg', 'Mèo ALN Golden ny11 siêu đẹp.', 1, 'm-o-anh-l-ng-ng-n-golden', 2),
+(30, 'Mèo Anh Lông Dài Trắng', NULL, 4500000.00, 7, '1778318916_meo-anh-long-dai-trang.jpg', 'Mèo ALD lông dài thướt tha.', 1, 'm-o-anh-l-ng-d-i-tr-ng', 2),
+(31, 'Mèo Ba Tư Mặt Tịt', 6500000.00, 6000000.00, 4, '1778318931_meo-ba-tu-mat-tit.jpg', 'Mèo Ba Tư mặt tịt quý tộc.', 1, 'm-o-ba-t-m-t-t-t', 2),
+(32, 'Mèo Scottish Fold Xám', NULL, 5500000.00, 6, '1778318949_meo-scottish-fold-xam.jpg', 'Scottish tai cụp đáng yêu.', 1, 'm-o-scottish-fold-x-m', 2),
+(33, 'Mèo Bengal', 15000000.00, 14000000.00, 2, '1778318963_meo-bengal.jpg', 'Mèo Bengal vằn báo hoang dã.', 1, 'm-o-bengal', 2),
+(34, 'Mèo Xiêm Thái', 3500000.00, 3000000.00, 8, '1778318973_meo-xiem-thai.jpg', 'Mèo Xiêm thông minh quấn chủ.', 1, 'm-o-xi-m-th-i', 2),
+(35, 'Mèo Sphynx Không Lông', NULL, 12000000.00, 3, '1778318986_meo-sphynx-khong-long.jpg', 'Mèo Ai Cập không lông độc lạ.', 1, 'm-o-sphynx-kh-ng-l-ng', 2),
+(36, 'Mèo Ragdoll Mắt Xanh', 18000000.00, 17000000.00, 2, '1778319003_meo-ragdoll-mat-xanh.jpg', 'Ragdoll bế lên là mềm nhũn.', 1, 'm-o-ragdoll-m-t-xanh', 2),
 (37, 'Mèo Munchkin Chân Ngắn', NULL, 10000000.00, 5, NULL, 'Munchkin chân cực ngắn.', 1, 'meo-munchkin-chan-ngan', 2),
 (38, 'Mèo ALN Silver', 7000000.00, 6500000.00, 4, NULL, 'Mèo ALN màu Silver Tabby.', 1, 'meo-aln-silver', 2),
 (39, 'Mèo Exotic Lông Ngắn', NULL, 8000000.00, 3, NULL, 'Phiên bản lông ngắn của mèo Ba Tư.', 1, 'meo-exotic-long-ngan', 2),
@@ -279,10 +279,10 @@ INSERT INTO `Products` (`product_id`, `product_name`, `price_old`, `price_new`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Promotions`
+-- Cấu trúc bảng cho bảng `promotions`
 --
 
-CREATE TABLE `Promotions` (
+CREATE TABLE `promotions` (
   `promo_id` int(10) UNSIGNED NOT NULL,
   `promo_name` varchar(100) NOT NULL,
   `discount_percent` decimal(5,2) DEFAULT NULL,
@@ -294,10 +294,10 @@ CREATE TABLE `Promotions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Reviews`
+-- Cấu trúc bảng cho bảng `reviews`
 --
 
-CREATE TABLE `Reviews` (
+CREATE TABLE `reviews` (
   `review_id` int(11) NOT NULL,
   `rating` tinyint(4) DEFAULT NULL,
   `comment` text DEFAULT NULL,
@@ -309,10 +309,10 @@ CREATE TABLE `Reviews` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
-CREATE TABLE `Users` (
+CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
@@ -324,214 +324,214 @@ CREATE TABLE `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `Users` (`user_id`, `email`, `password`, `username`, `full_name`, `role`, `created_at`, `is_active`) VALUES
+INSERT INTO `users` (`user_id`, `email`, `password`, `username`, `full_name`, `role`, `created_at`, `is_active`) VALUES
 (6, 'admin12@gmail.com', '$2y$10$Q.g5MZOXJROZdgP/zQXavuA4XHAwR8iSUZc1XhdTOQqMtD/HXJaQi', 'Admin', NULL, 'ADMIN', '2026-04-19 01:12:09', 1),
 (7, 'bonhiki1233@gmail.com', '$2y$10$oPZ/pFfyWCmGSQD7V6XUoOEeRBv7P0ihwM3rs1V0HpRhBPfNDE3mG', 'bonhiki1233', NULL, 'CUSTOMER', '2026-04-29 18:26:36', 1),
 (9, 'customer1233@gmail.com', '$2y$10$UxWFU7Nvy8DRMSaLEG2AWO6pJP4Ciep2l7UxEfRQx0B3QYpagADOm', 'Customer', NULL, 'CUSTOMER', '2026-05-04 00:14:19', 1);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `Cart`
+-- Chỉ mục cho bảng `cart`
 --
-ALTER TABLE `Cart`
+ALTER TABLE `cart`
   ADD PRIMARY KEY (`cart_id`),
   ADD KEY `fk_cart_users` (`user_id`),
   ADD KEY `fk_cart_products` (`product_id`);
 
 --
--- Indexes for table `Categories`
+-- Chỉ mục cho bảng `categories`
 --
-ALTER TABLE `Categories`
+ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
 
 --
--- Indexes for table `Feedback`
+-- Chỉ mục cho bảng `feedback`
 --
-ALTER TABLE `Feedback`
+ALTER TABLE `feedback`
   ADD PRIMARY KEY (`feedback_id`),
   ADD KEY `fk_feedback_users` (`user_id`);
 
 --
--- Indexes for table `Orders`
+-- Chỉ mục cho bảng `orders`
 --
-ALTER TABLE `Orders`
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `fk_orders_users` (`user_id`);
 
 --
--- Indexes for table `Order_Details`
+-- Chỉ mục cho bảng `order_details`
 --
-ALTER TABLE `Order_Details`
+ALTER TABLE `order_details`
   ADD PRIMARY KEY (`detail_id`),
   ADD KEY `fk_details_orders` (`order_id`),
   ADD KEY `fk_details_products` (`product_id`);
 
 --
--- Indexes for table `Payment`
+-- Chỉ mục cho bảng `payment`
 --
-ALTER TABLE `Payment`
+ALTER TABLE `payment`
   ADD PRIMARY KEY (`payment_id`),
   ADD KEY `fk_payment_orders` (`order_id`);
 
 --
--- Indexes for table `Policies`
+-- Chỉ mục cho bảng `policies`
 --
-ALTER TABLE `Policies`
+ALTER TABLE `policies`
   ADD PRIMARY KEY (`policy_id`);
 
 --
--- Indexes for table `Products`
+-- Chỉ mục cho bảng `products`
 --
-ALTER TABLE `Products`
+ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`),
   ADD UNIQUE KEY `slug_UNIQUE` (`slug`),
   ADD KEY `fk_products_categories` (`category_id`);
 
 --
--- Indexes for table `Promotions`
+-- Chỉ mục cho bảng `promotions`
 --
-ALTER TABLE `Promotions`
+ALTER TABLE `promotions`
   ADD PRIMARY KEY (`promo_id`);
 
 --
--- Indexes for table `Reviews`
+-- Chỉ mục cho bảng `reviews`
 --
-ALTER TABLE `Reviews`
+ALTER TABLE `reviews`
   ADD PRIMARY KEY (`review_id`),
   ADD KEY `fk_reviews_users` (`user_id`),
   ADD KEY `fk_reviews_products` (`product_id`);
 
 --
--- Indexes for table `Users`
+-- Chỉ mục cho bảng `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `user_id_UNIQUE` (`user_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `Cart`
+-- AUTO_INCREMENT cho bảng `cart`
 --
-ALTER TABLE `Cart`
+ALTER TABLE `cart`
   MODIFY `cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Categories`
+-- AUTO_INCREMENT cho bảng `categories`
 --
-ALTER TABLE `Categories`
+ALTER TABLE `categories`
   MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `Feedback`
+-- AUTO_INCREMENT cho bảng `feedback`
 --
-ALTER TABLE `Feedback`
+ALTER TABLE `feedback`
   MODIFY `feedback_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Orders`
+-- AUTO_INCREMENT cho bảng `orders`
 --
-ALTER TABLE `Orders`
+ALTER TABLE `orders`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `Order_Details`
+-- AUTO_INCREMENT cho bảng `order_details`
 --
-ALTER TABLE `Order_Details`
+ALTER TABLE `order_details`
   MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `Payment`
+-- AUTO_INCREMENT cho bảng `payment`
 --
-ALTER TABLE `Payment`
+ALTER TABLE `payment`
   MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Policies`
+-- AUTO_INCREMENT cho bảng `policies`
 --
-ALTER TABLE `Policies`
+ALTER TABLE `policies`
   MODIFY `policy_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Products`
+-- AUTO_INCREMENT cho bảng `products`
 --
-ALTER TABLE `Products`
+ALTER TABLE `products`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
--- AUTO_INCREMENT for table `Promotions`
+-- AUTO_INCREMENT cho bảng `promotions`
 --
-ALTER TABLE `Promotions`
+ALTER TABLE `promotions`
   MODIFY `promo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Reviews`
+-- AUTO_INCREMENT cho bảng `reviews`
 --
-ALTER TABLE `Reviews`
+ALTER TABLE `reviews`
   MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Users`
+-- AUTO_INCREMENT cho bảng `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `Cart`
+-- Các ràng buộc cho bảng `cart`
 --
-ALTER TABLE `Cart`
-  ADD CONSTRAINT `fk_cart_products` FOREIGN KEY (`product_id`) REFERENCES `Products` (`product_id`),
-  ADD CONSTRAINT `fk_cart_users` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`);
+ALTER TABLE `cart`
+  ADD CONSTRAINT `fk_cart_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
+  ADD CONSTRAINT `fk_cart_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `Feedback`
+-- Các ràng buộc cho bảng `feedback`
 --
-ALTER TABLE `Feedback`
-  ADD CONSTRAINT `fk_feedback_users` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`);
+ALTER TABLE `feedback`
+  ADD CONSTRAINT `fk_feedback_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `Orders`
+-- Các ràng buộc cho bảng `orders`
 --
-ALTER TABLE `Orders`
-  ADD CONSTRAINT `fk_orders_users` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE `orders`
+  ADD CONSTRAINT `fk_orders_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `Order_Details`
+-- Các ràng buộc cho bảng `order_details`
 --
-ALTER TABLE `Order_Details`
-  ADD CONSTRAINT `fk_details_orders` FOREIGN KEY (`order_id`) REFERENCES `Orders` (`order_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_details_products` FOREIGN KEY (`product_id`) REFERENCES `Products` (`product_id`);
+ALTER TABLE `order_details`
+  ADD CONSTRAINT `fk_details_orders` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_details_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 
 --
--- Constraints for table `Payment`
+-- Các ràng buộc cho bảng `payment`
 --
-ALTER TABLE `Payment`
-  ADD CONSTRAINT `fk_payment_orders` FOREIGN KEY (`order_id`) REFERENCES `Orders` (`order_id`);
+ALTER TABLE `payment`
+  ADD CONSTRAINT `fk_payment_orders` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`);
 
 --
--- Constraints for table `Products`
+-- Các ràng buộc cho bảng `products`
 --
-ALTER TABLE `Products`
-  ADD CONSTRAINT `fk_products_categories` FOREIGN KEY (`category_id`) REFERENCES `Categories` (`category_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE `products`
+  ADD CONSTRAINT `fk_products_categories` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `Reviews`
+-- Các ràng buộc cho bảng `reviews`
 --
-ALTER TABLE `Reviews`
-  ADD CONSTRAINT `fk_reviews_products` FOREIGN KEY (`product_id`) REFERENCES `Products` (`product_id`),
-  ADD CONSTRAINT `fk_reviews_users` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`);
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `fk_reviews_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
+  ADD CONSTRAINT `fk_reviews_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

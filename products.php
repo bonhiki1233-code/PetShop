@@ -25,7 +25,7 @@ if ($result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetShop | S&#7843;n ph&#7849;m</title>
+    <title>PetShop | San pham</title>
 </head>
 <body>
     <?php include __DIR__ . '/includes/header.php'; ?>
@@ -33,10 +33,10 @@ if ($result) {
     <main class="container page-section">
         <div class="section-head">
             <div>
-                <p class="eyebrow">Danh m&#7909;c s&#7843;n ph&#7849;m</p>
-                <h2>T&#7845;t c&#7843; s&#7843;n ph&#7849;m</h2>
+                <p class="eyebrow">Danh muc san pham</p>
+                <h2>Tat ca san pham</h2>
             </div>
-            <a class="link-all" href="<?= $base_url ?>/search.php">T&#236;m n&#226;ng cao &rarr;</a>
+            <a class="link-all" href="<?= $base_url ?>/search.php">Tim nang cao &rarr;</a>
         </div>
 
         <div class="product-grid">
@@ -62,7 +62,7 @@ if ($result) {
                         <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
                         <input type="hidden" name="product_name" value="<?= htmlspecialchars($productName) ?>">
                         <input type="hidden" name="price" value="<?= $product['price_new'] ?>">
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Th&#234;m v&#224;o gi&#7887;</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Them vao gio</button>
                     </form>
                 </article>
             <?php endforeach; ?>

@@ -11,11 +11,11 @@ $message = "";
 $messageType = "error";
 
 if (isset($_GET['error']) && $_GET['error'] == 'locked') {
-    $message = "T&#224;i kho&#7843;n c&#7911;a b&#7841;n &#273;&#227; b&#7883; kh&#243;a b&#7903;i Qu&#7843;n tr&#7883; vi&#234;n!";
+    $message = "Tai khoan cua ban da bi khoa boi Quan tri vien!";
 }
 
 if (isset($_GET['success'])) {
-    $message = "&#272;&#259;ng k&#253; th&#224;nh c&#244;ng! M&#7901;i b&#7841;n &#273;&#259;ng nh&#7853;p.";
+    $message = "Dang ky thanh cong! Moi ban dang nhap.";
     $messageType = "success";
 }
 
@@ -24,7 +24,7 @@ if (isset($_POST['login'])) {
 
     if ($user) {
         if (isset($user['is_active']) && $user['is_active'] == 0) {
-            $message = "T&#224;i kho&#7843;n n&#224;y &#273;&#227; b&#7883; kh&#243;a. Vui l&#242;ng li&#234;n h&#7879; Admin!";
+            $message = "Tai khoan nay da bi khoa. Vui long lien he Admin!";
         } else {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
@@ -33,7 +33,7 @@ if (isset($_POST['login'])) {
             exit();
         }
     } else {
-        $message = "Sai t&#224;i kho&#7843;n ho&#7863;c m&#7853;t kh&#7849;u!";
+        $message = "Sai tai khoan hoac mat khau!";
     }
 }
 
@@ -43,44 +43,38 @@ include '../includes/header.php';
 <main class="login-page">
     <section class="login-shell">
         <div class="login-copy">
-            <span class="eyebrow">Ch&#224;o m&#7915;ng tr&#7903; l&#7841;i</span>
-            <h1>&#272;&#259;ng nh&#7853;p</h1>
-            <p class="login-subcopy">Ti&#7871;p t&#7909;c mua s&#7855;m cho Boss v&#224; Sen v&#7899;i t&#224;i kho&#7843;n c&#7911;a b&#7841;n.</p>
-
-            <ul class="login-highlights">
-                <li>Mua s&#7855;m nhanh h&#417;n v&#7899;i th&#244;ng tin &#273;&#227; l&#432;u</li>
-                <li>Theo d&#245;i &#273;&#417;n h&#224;ng v&#224; tr&#7841;ng th&#225;i giao h&#224;ng</li>
-                <li>Nh&#7853;n &#432;u &#273;&#227;i d&#224;nh ri&#234;ng cho th&#224;nh vi&#234;n</li>
-            </ul>
+            <span class="eyebrow">Chao mung tro lai</span>
+            <h1>Dang nhap</h1>
+            <p class="login-subcopy">Tiep tuc mua sam cho Boss va Sen voi tai khoan cua ban.</p>
         </div>
 
         <div class="login-card">
             <div class="login-card-head">
-                <span class="login-kicker">T&#224;i kho&#7843;n th&#224;nh vi&#234;n</span>
-                <h2>&#272;&#259;ng nh&#7853;p v&#224;o PetShop</h2>
+                <span class="login-kicker">Tai khoan thanh vien</span>
+                <h2>Dang nhap vao PetShop</h2>
             </div>
 
             <?php if ($message): ?>
-                <div class="message <?php echo $messageType === 'success' ? 'message-success' : 'message-error'; ?>"><?= $message ?></div>
+                <div class="message <?php echo $messageType === 'success' ? 'message-success' : 'message-error'; ?>"><?= htmlspecialchars($message) ?></div>
             <?php endif; ?>
 
             <form method="POST" class="login-form">
                 <div class="form-field">
-                    <label for="username">T&#234;n &#273;&#259;ng nh&#7853;p</label>
-                    <input id="username" type="text" name="username" placeholder="Nh&#7853;p t&#234;n &#273;&#259;ng nh&#7853;p" required>
+                    <label for="username">Ten dang nhap</label>
+                    <input id="username" type="text" name="username" placeholder="Nhap ten dang nhap" required>
                 </div>
 
                 <div class="form-field">
-                    <label for="password">M&#7853;t kh&#7849;u</label>
-                    <input id="password" type="password" name="password" placeholder="Nh&#7853;p m&#7853;t kh&#7849;u" required>
+                    <label for="password">Mat khau</label>
+                    <input id="password" type="password" name="password" placeholder="Nhap mat khau" required>
                 </div>
 
-                <button type="submit" name="login" class="btn btn-primary login-submit">&#272;&#259;ng nh&#7853;p</button>
+                <button type="submit" name="login" class="btn btn-primary login-submit">Dang nhap</button>
             </form>
 
             <div class="login-register">
-                <p>Ch&#432;a c&#243; t&#224;i kho&#7843;n?</p>
-                <a href="register.php">&#272;&#259;ng k&#253; ngay</a>
+                <p>Chua co tai khoan?</p>
+                <a href="register.php">Dang ky ngay</a>
             </div>
         </div>
     </section>

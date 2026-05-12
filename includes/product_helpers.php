@@ -25,7 +25,7 @@ function petshop_fallback_image(array $product, string $baseUrl = '/PetShop'): s
     $categoryId = (int) ($product['category_id'] ?? 0);
     $name = strtolower((string) ($product['product_name'] ?? ''));
 
-    if ($categoryId === 2 || strpos($name, 'meo') !== false || strpos($name, 'mèo') !== false) {
+    if ($categoryId === 2 || strpos($name, 'meo') !== false) {
         return petshop_public_image_url('cat_litter/000001.jpg', $baseUrl);
     }
 
@@ -93,20 +93,20 @@ function petshop_product_alt(array $product): string
 function petshop_product_category_label(array $product): string
 {
     if (!empty($product['category_name'])) {
-        return (string) $product['category_name'];
+        return (string) ($product['category_name']);
     }
 
     $categoryId = (int) ($product['category_id'] ?? 0);
     if ($categoryId === 1) {
-        return 'Thú cưng';
+        return 'Thu cung';
     }
 
     if ($categoryId === 2) {
-        return 'Thức ăn';
+        return 'Thuc an';
     }
 
     if ($categoryId === 3) {
-        return 'Phụ kiện';
+        return 'Phu kien';
     }
 
     return 'Pet care';

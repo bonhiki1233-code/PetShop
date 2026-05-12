@@ -65,7 +65,7 @@ $total = 0;
             </table>
 
             <div style="text-align: right; margin-top: 20px;">
-                <h3 style="font-size: 1.5rem;">tổng cộng: <span style="color: var(--brand);"><?= number_format($total) ?> d</span></h3>
+                <h3 style="font-size: 1.5rem;">tổng c: <span style="color: var(--brand);"><?= number_format($total) ?> d</span></h3>
                 <a href="checkout.php" class="btn btn-primary" style="margin-top: 15px;">tiến hành thanh toán</a>
             </div>
         <?php endif; ?>

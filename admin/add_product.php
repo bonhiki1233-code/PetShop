@@ -47,49 +47,52 @@ if (isset($_POST['add_product'])) {
 ?>
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <link rel="stylesheet" href="../assets/css/admin_style.css">
-    <title>Th&#234;m s&#7843;n ph&#7849;m</title>
+    <title>Thêm sản phẩm</title>
 </head>
+
 <body>
-<div class="container">
-    <h2>Th&#234;m s&#7843;n ph&#7849;m m&#7899;i</h2>
-    <form action="" method="post" enctype="multipart/form-data">
+    <div class="container">
+        <h2>Thêm sản phẩm mới</h2>
+        <form action="" method="post" enctype="multipart/form-data">
 
-        <label>T&#234;n s&#7843;n ph&#7849;m <span style="color:red">*</span></label>
-        <input type="text" name="product_name" placeholder="Ten san pham" required>
+            <label>Tạn sản phẩm <span style="color:red">*</span></label>
+            <input type="text" name="product_name" placeholder="Ten san pham" required>
 
-        <label>Danh m&#7909;c <span style="color:red">*</span></label>
-        <select name="category_id" required>
-            <option value="" disabled selected>Chon danh muc</option>
-            <option value="1">Thu cung</option>
-            <option value="2">Thuc an</option>
-            <option value="3">Phu kien</option>
-        </select>
+            <label>Danh mục <span style="color:red">*</span></label>
+            <select name="category_id" required>
+                <option value="" disabled selected>Chọn danh mục</option>
+                <option value="1">Thú cưng</option>
+                <option value="2">Thức ăn</option>
+                <option value="3">Phụ kiện</option>
+            </select>
 
-        <label>Gi&#225; c&#361; (&#273;&#7875; tr&#7889;ng n&#7871;u kh&#244;ng c&#243;)</label>
-        <input type="number" name="price_old" placeholder="Gia cu" min="0" step="1000">
+            <label>Gi&#225; c&#361; (&#273;&#7875; tr&#7889;ng n&#7871;u kh&#244;ng c&#243;)</label>
+            <input type="number" name="price_old" placeholder="Gia cu" min="0" step="1000">
 
-        <label>Gi&#225; m&#7899;i <span style="color:red">*</span></label>
-        <input type="number" name="price_new" placeholder="Gia ban" min="0" step="1000" required>
+            <label>Gi&#225; m&#7899;i <span style="color:red">*</span></label>
+            <input type="number" name="price_new" placeholder="Gia ban" min="0" step="1000" required>
 
-        <label>S&#7889; l&#432;&#7907;ng t&#7891;n kho</label>
-        <input type="number" name="stock_quantity" placeholder="So luong" min="0" value="0">
+            <label>S&#7889; l&#432;&#7907;ng t&#7891;n kho</label>
+            <input type="number" name="stock_quantity" placeholder="So luong" min="0" value="0">
 
-        <label>M&#244; t&#7843; s&#7843;n ph&#7849;m</label>
-        <textarea name="description" placeholder="Mo ta san pham..." rows="4"></textarea>
+            <label>M&#244; t&#7843; s&#7843;n ph&#7849;m</label>
+            <textarea name="description" placeholder="Mo ta san pham..." rows="4"></textarea>
 
-        <label>
-            <input type="checkbox" name="is_pet" value="1">
-            La thu cung
-        </label>
+            <label>
+                <input type="checkbox" name="is_pet" value="1">
+                La thu cung
+            </label>
 
-        <label>&#7842;nh s&#7843;n ph&#7849;m</label>
-        <input type="file" name="image" accept="image/jpg, image/jpeg, image/png">
+            <label>&#7842;nh s&#7843;n ph&#7849;m</label>
+            <input type="file" name="image" accept="image/jpg, image/jpeg, image/png">
 
-        <input type="submit" name="add_product" value="Luu san pham" class="btn btn-success-add">
-        <a href="admin_products.php" class="btn" style="background: gray; display:block; text-align:center; margin-top:10px;">Quay lai</a>
-    </form>
-</div>
+            <input type="submit" name="add_product" value="Luu san pham" class="btn btn-success-add">
+            <a href="admin_products.php" class="btn" style="background: gray; display:block; text-align:center; margin-top:10px;">Quay lai</a>
+        </form>
+    </div>
 </body>
+
 </html>
